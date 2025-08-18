@@ -1,0 +1,102 @@
+.checklistContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+  margin-top: 12px;
+}
+
+/* Tarjeta */
+.checklistCard {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 14px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Título o texto destacado dentro de la tarjeta */
+.checklistCard h4,
+.checklistCard .title,
+.checklistCard .itemTitle {
+  margin: 0 0 6px 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+/* Grupo de campos sin tocar tu TSX */
+.checklistCard .group,
+.checklistCard .row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Labels e información */
+.checklistCard label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #6b7280;
+}
+
+/* Inputs y selects contenidos en la tarjeta */
+.checklistCard input[type="text"],
+.checklistCard input[type="number"],
+.checklistCard input[type="date"],
+.checklistCard select,
+.checklistCard textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #fff;
+  color: #111827;
+  font-size: 14px;
+  outline: none;
+}
+.checklistCard input:focus,
+.checklistCard select:focus,
+.checklistCard textarea:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37,99,235,.15);
+}
+
+/* Botones dentro de la tarjeta */
+.checklistCard button,
+.checklistCard .btn {
+  align-self: flex-start;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: #2563eb;
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+}
+.checklistCard button:hover,
+.checklistCard .btn:hover {
+  filter: brightness(1.05);
+}
+
+/* Texto auxiliar/metadata */
+.checklistCard .meta,
+.checklistCard .itemMeta,
+.checklistCard small {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* Espaciado entre tarjetas en móviles */
+@media (max-width: 480px) {
+  .checklistContainer {
+    gap: 12px;
+  }
+  .checklistCard {
+    padding: 12px;
+    border-radius: 8px;
+  }
+}

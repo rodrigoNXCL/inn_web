@@ -1,0 +1,134 @@
+/* Contenedor general */
+.wrapper {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f5f7fa;
+  font-family: 'Inter', Arial, sans-serif;
+}
+
+/* Barra lateral */
+.sidebar {
+  width: 250px;
+  background: #1f2937; /* gris oscuro elegante */
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Marca superior */
+.brand {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: #fbbf24; /* dorado elegante */
+}
+
+/* Usuario */
+.userBox {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+}
+
+.avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #fbbf24;
+  color: #1f2937;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-right: 0.75rem;
+}
+
+.userMeta {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.85rem;
+}
+
+.userName {
+  font-weight: 600;
+  color: #fff;
+}
+
+.userEmail {
+  font-size: 0.75rem;
+  color: #d1d5db;
+}
+
+/* Navegación */
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.navLink {
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #d1d5db;
+  font-size: 0.9rem;
+  transition: background 0.2s, color 0.2s;
+}
+
+.navLink:hover {
+  background: #374151;
+  color: #fff;
+}
+
+.active {
+  background: #fbbf24;
+  color: #1f2937;
+  font-weight: bold;
+}
+
+/* Caja de soporte */
+.supportBox {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.supportLine {
+  font-size: 0.75rem;
+  color: #d1d5db;
+  margin-bottom: 0.3rem;
+}
+
+.logoutBtn {
+  margin-top: 0.8rem;
+  width: 100%;
+  padding: 0.5rem;
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.logoutBtn:hover {
+  background: #dc2626;
+}
+
+/* Contenido principal */
+.content {
+  flex: 1;
+  padding: 2rem;
+  background: #ffffff;
+  overflow-y: auto;
+}
