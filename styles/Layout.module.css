@@ -1,134 +1,99 @@
-/* Contenedor general */
-.wrapper {
+.container {
   display: flex;
   min-height: 100vh;
-  background-color: #f5f7fa;
-  font-family: 'Inter', Arial, sans-serif;
 }
 
-/* Barra lateral */
 .sidebar {
-  width: 250px;
-  background: #1f2937; /* gris oscuro elegante */
-  color: #ffffff;
+  width: 260px;
+  background-color: #1e293b; /* gris oscuro */
+  color: #f8fafc;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 1rem;
-  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+  padding: 20px 15px;
 }
 
-/* Marca superior */
-.brand {
-  font-size: 1.3rem;
-  font-weight: bold;
-  margin-bottom: 1.5rem;
-  text-align: center;
-  color: #fbbf24; /* dorado elegante */
-}
-
-/* Usuario */
 .userBox {
   display: flex;
   align-items: center;
-  margin-bottom: 2rem;
-  padding: 0.5rem;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 8px;
+  gap: 12px;
+  margin-bottom: 20px;
 }
 
 .avatar {
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  background: #fbbf24;
-  color: #1f2937;
+  background: #3b82f6;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  font-size: 1.1rem;
-  margin-right: 0.75rem;
+  font-size: 18px;
+  color: white;
 }
 
-.userMeta {
-  display: flex;
-  flex-direction: column;
-  font-size: 0.85rem;
+.menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.userName {
-  font-weight: 600;
-  color: #fff;
+.menu li {
+  margin: 10px 0;
 }
 
-.userEmail {
-  font-size: 0.75rem;
-  color: #d1d5db;
-}
-
-/* Navegación */
-.nav {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.navLink {
-  padding: 0.6rem 1rem;
-  border-radius: 6px;
+.menu a {
+  color: #f8fafc;
   text-decoration: none;
-  color: #d1d5db;
-  font-size: 0.9rem;
-  transition: background 0.2s, color 0.2s;
+  font-size: 15px;
+  transition: color 0.2s ease;
 }
 
-.navLink:hover {
-  background: #374151;
-  color: #fff;
+.menu a:hover {
+  color: #38bdf8; /* celeste */
 }
 
-.active {
-  background: #fbbf24;
-  color: #1f2937;
-  font-weight: bold;
-}
-
-/* Caja de soporte */
-.supportBox {
+.supportSection {
   margin-top: auto;
-  padding-top: 1.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.supportLine {
-  font-size: 0.75rem;
-  color: #d1d5db;
-  margin-bottom: 0.3rem;
+.supportInfo {
+  font-size: 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.supportInfo a {
+  color: #e2e8f0;
+  text-decoration: none;
+}
+
+.supportInfo a:hover {
+  color: #38bdf8;
 }
 
 .logoutBtn {
-  margin-top: 0.8rem;
-  width: 100%;
-  padding: 0.5rem;
-  background: #ef4444;
-  color: white;
+  padding: 10px;
+  background: #ef4444; /* rojo */
   border: none;
   border-radius: 6px;
+  color: white;
+  font-weight: bold;
   cursor: pointer;
-  font-size: 0.85rem;
-  font-weight: 600;
-  transition: background 0.2s;
+  transition: background 0.2s ease;
 }
 
 .logoutBtn:hover {
-  background: #dc2626;
+  background: #dc2626; /* rojo más oscuro */
 }
 
-/* Contenido principal */
-.content {
+.mainContent {
   flex: 1;
-  padding: 2rem;
-  background: #ffffff;
-  overflow-y: auto;
+  background: #f1f5f9;
+  padding: 25px;
 }
