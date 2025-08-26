@@ -1,7 +1,7 @@
 const Parser = require('rss-parser');
 const parser = new Parser();
 
-module.exports = async function handler(req, res) {
+export default async function handler(req, res) {
   const { fuente } = req.query;
 
   const urls = {
@@ -21,7 +21,6 @@ module.exports = async function handler(req, res) {
     }));
     res.status(200).json(noticias);
   } catch (e) {
-    // Aquí devolvemos un error real para poder depurarlo
     console.error("Error al obtener noticias:", e);
     res.status(500).json({ error: "Fallo al obtener noticias. Intenta nuevamente más tarde." });
   }
