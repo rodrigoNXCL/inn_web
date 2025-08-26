@@ -57,17 +57,23 @@ export default function MantMaquinas() {
 
   return (
     <Layout>
-      <div style={{ maxWidth: 900, margin: 'auto', padding: 24 }}>
+      <div className="mant-container">
         {/* NUEVO */}
         <form onSubmit={crear} className="admin-card">
           <h3>Nueva máquina</h3>
           <div className="form-row">
             <div className="form-col">
               <label>Nombre</label>
-              <input className="checklist-input" value={nuevoNombre} onChange={e=>setNuevoNombre(e.target.value)} placeholder="Ej: Retroexcavadora" required />
+              <input 
+                className="form-input" 
+                value={nuevoNombre} 
+                onChange={e=>setNuevoNombre(e.target.value)} 
+                placeholder="Ej: Retroexcavadora" 
+                required 
+              />
             </div>
             <div className="form-col" style={{maxWidth:220}}>
-              <button type="submit" className="checklist-btn" disabled={saving}>{saving?'Guardando...':'Agregar'}</button>
+              <button type="submit" className="form-btn" disabled={saving}>{saving?'Guardando...':'Agregar'}</button>
             </div>
           </div>
         </form>
@@ -77,42 +83,47 @@ export default function MantMaquinas() {
           <div className="form-row">
             <div className="form-col" style={{maxWidth:340}}>
               <label>Buscar</label>
-              <input className="checklist-input" value={q} onChange={e=>setQ(e.target.value)} placeholder="Nombre de máquina..." />
+              <input 
+                className="form-input" 
+                value={q} 
+                onChange={e=>setQ(e.target.value)} 
+                placeholder="Nombre de máquina..." 
+              />
             </div>
           </div>
         </div>
 
         {/* LISTA */}
         <div className="admin-card" style={{padding:0}}>
-          <table className="nx-table">
+          <table className="mant-table">
             <thead>
               <tr>
-                <th className="nx-th" style={{width:80}}>ID</th>
-                <th className="nx-th">Nombre</th>
-                <th className="nx-th" style={{width:240}}>Acciones</th>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th style={{width:240}}>Acciones</th>
               </tr>
             </thead>
             <tbody>
-              {list.length===0 && <tr><td className="nx-td" colSpan={3}>Sin resultados.</td></tr>}
+              {list.length===0 && <tr><td colSpan={3} className="no-results">Sin resultados.</td></tr>}
               {list.map(r=>(
                 <tr key={r.id}>
-                  <td className="nx-td">{r.id}</td>
-                  <td className="nx-td">
+                  <td>{r.id}</td>
+                  <td>
                     {editId===r.id
-                      ? <input className="checklist-input" value={editNombre} onChange={e=>setEditNombre(e.target.value)} />
+                      ? <input className="form-input" value={editNombre} onChange={e=>setEditNombre(e.target.value)} />
                       : r.nombre}
                   </td>
-                  <td className="nx-td nx-actions">
+                  <td>
                     {editId!==r.id ? (
-                      <>
-                        <button className="checklist-btn" onClick={()=>startEdit(r)}>Editar</button>
-                        <button className="checklist-btn" style={{background:'#c0392b'}} onClick={()=>eliminar(r.id)}>Eliminar</button>
-                      </>
+                      <div className="btn-group">
+                        <button className="btn-edit" onClick={()=>startEdit(r)}>Editar</button>
+                        <button className="btn-delete" onClick={()=>eliminar(r.id)}>Eliminar</button>
+                      </div>
                     ) : (
-                      <>
-                        <button className="checklist-btn" style={{background:'#0f7a2a'}} onClick={()=>guardarEdit(r.id)}>Guardar</button>
-                        <button className="checklist-btn" style={{background:'#6b7280'}} onClick={cancelEdit}>Cancelar</button>
-                      </>
+                      <div className="btn-group">
+                        <button className="form-btn" style={{backgroundColor:'#28a745'}} onClick={()=>guardarEdit(r.id)}>Guardar</button>
+                        <button className="form-btn" style={{backgroundColor:'#6c757d'}} onClick={cancelEdit}>Cancelar</button>
+                      </div>
                     )}
                   </td>
                 </tr>

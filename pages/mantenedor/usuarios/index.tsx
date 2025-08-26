@@ -107,7 +107,7 @@ export default function MantUsuarios() {
 
   return (
     <Layout>
-      <div style={{ maxWidth: 1100, margin: "auto", padding: 24 }}>
+      <div className="mant-container">
         {/* NUEVO USUARIO */}
         <form onSubmit={crearUsuario} className="admin-card">
           <h3>Nuevo usuario</h3>
@@ -115,7 +115,7 @@ export default function MantUsuarios() {
             <div className="form-col">
               <label>Nombre</label>
               <input
-                className="checklist-input"
+                className="form-input"
                 value={nNombre}
                 onChange={(e) => setNNombre(e.target.value)}
                 placeholder="Ej: Juan Pérez"
@@ -125,7 +125,7 @@ export default function MantUsuarios() {
             <div className="form-col">
               <label>Email</label>
               <input
-                className="checklist-input"
+                className="form-input"
                 type="email"
                 value={nCorreo}
                 onChange={(e) => setNCorreo(e.target.value)}
@@ -136,7 +136,7 @@ export default function MantUsuarios() {
             <div className="form-col">
               <label>Password</label>
               <input
-                className="checklist-input"
+                className="form-input"
                 type="text"
                 value={nPass}
                 onChange={(e) => setNPass(e.target.value)}
@@ -147,7 +147,7 @@ export default function MantUsuarios() {
             <div className="form-col" style={{ maxWidth: 240 }}>
               <label>Rol</label>
               <select
-                className="checklist-select"
+                className="form-select"
                 value={nRol}
                 onChange={(e) => setNRol(e.target.value as RolApp)}
               >
@@ -159,7 +159,7 @@ export default function MantUsuarios() {
               </select>
             </div>
             <div className="form-col" style={{ maxWidth: 220 }}>
-              <button type="submit" className="checklist-btn" disabled={saving}>
+              <button type="submit" className="form-btn" disabled={saving}>
                 {saving ? "Guardando..." : "Agregar usuario"}
               </button>
             </div>
@@ -168,49 +168,47 @@ export default function MantUsuarios() {
 
         {/* LISTA */}
         <div className="admin-card" style={{ padding: 0 }}>
-          <table className="nx-table">
+          <table className="mant-table">
             <thead>
               <tr>
-                <th className="nx-th" style={{ width: 80 }}>ID</th>
-                <th className="nx-th">Nombre</th>
-                <th className="nx-th">Email</th>
-                <th className="nx-th">Password</th>
-                <th className="nx-th" style={{ width: 140 }}>Rol</th>
-                <th className="nx-th" style={{ width: 220 }}>Acciones</th>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th style={{ width: 140 }}>Rol</th>
+                <th style={{ width: 220 }}>Acciones</th>
               </tr>
             </thead>
             <tbody>
               {usuarios.length === 0 && (
                 <tr>
-                  <td className="nx-td" colSpan={6}>Sin resultados.</td>
+                  <td colSpan={6} className="no-results">Sin resultados.</td>
                 </tr>
               )}
               {usuarios.map((u) => (
                 <tr key={u.id}>
-                  <td className="nx-td">{u.id.slice(0, 8)}</td>
-                  <td className="nx-td">{u.nombre}</td>
-                  <td className="nx-td">{u.correo}</td>
-                  <td className="nx-td">{puedeVerPass(u) ? u.password : "••••••••"}</td>
-                  <td className="nx-td">{u.rol}</td>
-                  <td className="nx-td">
+                  <td>{u.id.slice(0, 8)}</td>
+                  <td>{u.nombre}</td>
+                  <td>{u.correo}</td>
+                  <td>{puedeVerPass(u) ? u.password : "••••••••"}</td>
+                  <td>{u.rol}</td>
+                  <td>
                     {(miRol === "superadmin" ||
                       (miRol === "administrador" && u.rol !== "SuperAdmin")) ? (
-                      <>
+                      <div className="btn-group">
                         <button
-                          className="checklist-btn"
+                          className="btn-edit"
                           onClick={() => alert("Editar (pendiente)")}
-                          style={{ marginRight: 8 }}
                         >
                           Editar
                         </button>
                         <button
-                          className="checklist-btn"
+                          className="btn-delete"
                           onClick={() => eliminarUsuario(u)}
-                          style={{ background: "#c0392b" }}
                         >
                           Eliminar
                         </button>
-                      </>
+                      </div>
                     ) : (
                       <>—</>
                     )}

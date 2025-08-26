@@ -1,0 +1,140 @@
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 24px;
+}
+
+.header {
+  margin-bottom: 24px;
+}
+
+.header h1 {
+  font-size: 2.2rem;
+  color: #1f2937;
+  margin-bottom: 4px;
+}
+
+.userInfo {
+  color: #2260a8;
+  font-size: 1rem;
+}
+.userInfo b {
+  color: #111827;
+}
+
+/* Tarjetas */
+.card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.08);
+  margin-bottom: 24px;
+}
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+.cardHeader h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+.sourceButtons button {
+  font-size: 0.875rem;
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: 1px solid #005bb5;
+  background-color: #fff;
+  color: #005bb5;
+  font-weight: 600;
+  cursor: pointer;
+}
+.sourceButtons button.activeBtn {
+  background-color: #005bb5;
+  color: #fff;
+}
+.sourceButtons button:not(:last-child) {
+  margin-right: 8px;
+}
+
+/* Noticias */
+.newsList {
+  list-style: none;
+  margin: 16px 0 0 0;
+  padding: 0;
+}
+.newsItem {
+  margin-bottom: 16px;
+  border-bottom: 1px solid #e3e9f2;
+  padding-bottom: 12px;
+}
+.newsLink {
+  font-weight: 600;
+  color: #0070f3;
+  font-size: 1.125rem;
+  text-decoration: none;
+}
+.newsSummary {
+  color: #444;
+  font-size: 0.9375rem;
+  margin-top: 4px;
+}
+.moreNewsLink {
+  color: #1564ad;
+  text-decoration: underline;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+.noResults {
+  color: #6b7280;
+  font-style: italic;
+}
+
+/* Tareas pendientes */
+.pendingText {
+  font-size: 1.1rem;
+  color: #4b5563;
+  text-align: center;
+  margin-bottom: 18px;
+}
+.pendingCount {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e843f;
+}
+.actionBtn {
+  display: block;
+  width: fit-content;
+  margin: auto;
+  padding: 10px 20px;
+  background-color: #1a71ff;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background-color 0.2s ease-in-out;
+}
+.actionBtn:hover {
+  background-color: #135ac5;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .container {
+    padding: 16px;
+  }
+  .header h1 {
+    font-size: 1.8rem;
+  }
+  .cardHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .sourceButtons {
+    margin-top: 10px;
+  }
+}

@@ -92,17 +92,23 @@ export default function MantTipos() {
 
   return (
     <Layout>
-      <div style={{ maxWidth: 1000, margin: 'auto', padding: 24 }}>
+      <div className="mant-container">
         {/* NUEVO */}
         <form onSubmit={crear} className="admin-card">
           <h3>Nuevo tipo</h3>
           <div className="form-row">
             <div className="form-col">
               <label>Nombre</label>
-              <input className="checklist-input" value={nuevo} onChange={e=>setNuevo(e.target.value)} placeholder="Ej: Preoperacional / Motor" required />
+              <input 
+                className="form-input" 
+                value={nuevo} 
+                onChange={e=>setNuevo(e.target.value)} 
+                placeholder="Ej: Preoperacional / Motor" 
+                required 
+              />
             </div>
             <div className="form-col" style={{maxWidth:220}}>
-              <button type="submit" className="checklist-btn" disabled={saving}>{saving?'Guardando...':'Agregar'}</button>
+              <button type="submit" className="form-btn" disabled={saving}>{saving?'Guardando...':'Agregar'}</button>
             </div>
           </div>
         </form>
@@ -112,42 +118,47 @@ export default function MantTipos() {
           <div className="form-row">
             <div className="form-col" style={{maxWidth:340}}>
               <label>Buscar</label>
-              <input className="checklist-input" value={q} onChange={e=>setQ(e.target.value)} placeholder="Nombre del tipo..." />
+              <input 
+                className="form-input" 
+                value={q} 
+                onChange={e=>setQ(e.target.value)} 
+                placeholder="Nombre del tipo..." 
+              />
             </div>
           </div>
         </div>
 
         {/* LISTA */}
         <div className="admin-card" style={{padding:0}}>
-          <table className="nx-table">
+          <table className="mant-table">
             <thead>
               <tr>
-                <th className="nx-th" style={{width:80}}>ID</th>
-                <th className="nx-th">Tipo</th>
-                <th className="nx-th" style={{width:240}}>Acciones</th>
+                <th>ID</th>
+                <th>Tipo</th>
+                <th style={{width:240}}>Acciones</th>
               </tr>
             </thead>
             <tbody>
-              {list.length===0 && <tr><td className="nx-td" colSpan={3}>Sin resultados.</td></tr>}
+              {list.length===0 && <tr><td colSpan={3} className="no-results">Sin resultados.</td></tr>}
               {list.map(r=>(
                 <tr key={r.id}>
-                  <td className="nx-td">{r.id}</td>
-                  <td className="nx-td">
+                  <td data-label="ID">{r.id}</td>
+                  <td data-label="Tipo">
                     {editId===r.id
-                      ? <input className="checklist-input" value={editNombre} onChange={e=>setEditNombre(e.target.value)} />
+                      ? <input className="form-input" value={editNombre} onChange={e=>setEditNombre(e.target.value)} />
                       : r.nombre}
                   </td>
-                  <td className="nx-td nx-actions">
+                  <td data-label="Acciones">
                     {editId!==r.id ? (
-                      <>
-                        <button className="checklist-btn" onClick={()=>startEdit(r)}>Editar</button>
-                        <button className="checklist-btn" style={{background:'#c0392b'}} onClick={()=>eliminar(r.id)}>Eliminar</button>
-                      </>
+                      <div className="btn-group">
+                        <button className="btn-edit" onClick={()=>startEdit(r)}>Editar</button>
+                        <button className="btn-delete" onClick={()=>eliminar(r.id)}>Eliminar</button>
+                      </div>
                     ) : (
-                      <>
-                        <button className="checklist-btn" style={{background:'#0f7a2a'}} onClick={()=>guardarEdit(r.id)}>Guardar</button>
-                        <button className="checklist-btn" style={{background:'#6b7280'}} onClick={cancelEdit}>Cancelar</button>
-                      </>
+                      <div className="btn-group">
+                        <button className="form-btn" style={{backgroundColor:'#28a745'}} onClick={()=>guardarEdit(r.id)}>Guardar</button>
+                        <button className="form-btn" style={{backgroundColor:'#6c757d'}} onClick={cancelEdit}>Cancelar</button>
+                      </div>
                     )}
                   </td>
                 </tr>
@@ -158,40 +169,43 @@ export default function MantTipos() {
 
         {/* ASIGNACIÓN TIPOS ↔ MÁQUINAS */}
         <div className="admin-card">
-          <h3>Asignar tipos a máquina</h3>
+          <h3>Asignar tipos de control a máquina</h3>
+          <p className="section-description">
+            Aquí puedes asociar los tipos de control (ej: Preoperacional) a las máquinas correspondientes.
+          </p>
           <div className="form-row">
             <div className="form-col">
               <label>Máquina</label>
-              <select className="checklist-select" value={mSel} onChange={e=>setMSel(e.target.value)}>
+              <select className="form-select" value={mSel} onChange={e=>setMSel(e.target.value)}>
                 <option value="">Seleccione...</option>
                 {maquinas.map(m => <option key={m.id} value={m.id}>{m.nombre}</option>)}
               </select>
             </div>
             <div className="form-col">
               <label>Agregar tipo</label>
-              <div className="input-with-btn">
-                <select className="checklist-select" value={tSel} onChange={e=>setTSel(e.target.value)} disabled={!mSel}>
+              <div className="input-group">
+                <select className="form-select" value={tSel} onChange={e=>setTSel(e.target.value)} disabled={!mSel}>
                   <option value="">Seleccione...</option>
                   {list
                     .filter(t => !tiposAsig.includes(t.id))
                     .map(t => <option key={t.id} value={t.id}>{t.nombre}</option>)}
                 </select>
-                <button type="button" className="btn-ghost" onClick={asignarTipo} disabled={!mSel || !tSel}>Asignar</button>
+                <button type="button" className="form-btn" onClick={asignarTipo} disabled={!mSel || !tSel}>Asignar</button>
               </div>
             </div>
           </div>
 
           {mSel && (
-            <div style={{marginTop:14}}>
-              <div style={{marginBottom:8, fontWeight:700}}>Tipos asignados</div>
-              <div style={{display:'flex', flexWrap:'wrap', gap:8}}>
-                {tiposAsig.length===0 && <span style={{color:'#6b7280'}}>Ninguno</span>}
+            <div style={{marginTop:16}}>
+              <p className="label-assigned">Tipos asignados a la máquina seleccionada:</p>
+              <div className="tags-container">
+                {tiposAsig.length===0 && <span className="no-assigned-tag">Ninguno</span>}
                 {tiposAsig.map(id => {
                   const t = list.find(x=>x.id===id)
                   return (
-                    <span key={id} style={{background:'#eef2ff', border:'1px solid #c7d2fe', color:'#1e3a8a', padding:'6px 10px', borderRadius:999}}>
+                    <span key={id} className="assigned-tag">
                       {t?.nombre || id}
-                      <button onClick={()=>quitarTipo(id)} style={{marginLeft:8, background:'transparent', border:'none', color:'#1e3a8a', cursor:'pointer'}}>✕</button>
+                      <button onClick={()=>quitarTipo(id)} className="tag-remove-btn">✕</button>
                     </span>
                   )
                 })}

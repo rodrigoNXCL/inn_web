@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NEXO Web App
 
-## Getting Started
+## 📝 Descripción del Proyecto
 
-First, run the development server:
+NEXO Web App es un sistema de gestión de checklists y reportes diseñado para optimizar la inspección y el control de máquinas. La aplicación permite a los usuarios (inspectores y administradores) realizar inspecciones detalladas, generar reportes personalizados con filtros y exportar los datos en diferentes formatos (PDF y CSV).
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Este proyecto utiliza la tecnología **Next.js** para el frontend y **Supabase** como backend sin servidor (serverless) para la base de datos y la autenticación.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### ✨ Características Principales
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+-   **Autenticación de Usuarios**: Roles de `superadmin`, `administrador` e `inspector`.
+-   **Creación de Checklists**: Permite definir diferentes tipos de checklists y sus ítems asociados.
+-   **Gestión de Máquinas**: Catálogo para el registro y control de máquinas.
+-   **Generación de Reportes**: Reportes detallados con filtros por fecha, tipo de máquina y código.
+-   **Exportación de Datos**: Funcionalidades para exportar reportes a **PDF** (vista optimizada para impresión) y **CSV** (con datos brutos y pivotados).
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+### 🛠️ Requisitos
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Para ejecutar este proyecto de forma local, necesitas tener instalado:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+-   **Node.js** (versión 18 o superior recomendada)
+-   **npm** o **Yarn**
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 🚀 Instalación y Uso
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1.  **Clonar el repositorio**:
+    ```bash
+    git clone [https://github.com/rodrigoNXCL/inn_web.git](https://github.com/rodrigoNXCL/inn_web.git)
+    cd inn_web
+    ```
+
+2.  **Instalar dependencias**:
+    ```bash
+    npm install
+    # o si usas yarn:
+    # yarn install
+    ```
+
+3.  **Configurar Supabase**:
+    * Crea un archivo `.env.local` en la raíz del proyecto.
+    * Añade tus credenciales de Supabase. Puedes encontrarlas en `Settings -> API` en el panel de control de tu proyecto Supabase.
+    ```env
+    NEXT_PUBLIC_SUPABASE_URL=tu-url-de-proyecto-supabase
+    NEXT_PUBLIC_SUPABASE_ANON_KEY=tu-anon-key-de-supabase
+    ```
+
+4.  **Ejecutar la aplicación**:
+    ```bash
+    npm run dev
+    ```
+    La aplicación estará disponible en [http://localhost:3000](http://localhost:3000).
+
+---
+
+### 📂 Estructura del Proyecto
+
+-   `pages/`: Rutas de la aplicación.
+    -   `_app.tsx`: Componente principal que envuelve toda la aplicación.
+    -   `login.tsx`: Página de inicio de sesión.
+    -   `reportes/`: Subrutas relacionadas con los reportes.
+-   `components/`: Componentes reutilizables como el `Layout`, formularios, etc.
+-   `styles/`: Archivos de estilo CSS.
+-   `lib/`: Archivos de configuración, como la conexión a Supabase.
+-   `public/`: Archivos estáticos como el logo de la empresa.
+
+---
+
+### 📧 Contacto y Soporte
+
+Si tienes preguntas o necesitas soporte, puedes contactar a:
+
+-   **Correo electrónico**: [soporte@nxchile.com](mailto:soporte@nxchile.com)
+-   **WhatsApp**: [+56 9 7741 2178](https://wa.me/56977412178)

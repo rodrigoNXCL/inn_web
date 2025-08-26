@@ -1,0 +1,273 @@
+/* -- Contenedor principal -- */
+.mant-container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 24px;
+}
+
+/* -- Tarjeta de admin (para formularios y tablas) -- */
+.admin-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.admin-card h3 {
+  margin-top: 0;
+  margin-bottom: 24px;
+  color: #333;
+}
+
+/* -- Formularios -- */
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: flex-end;
+}
+
+.form-col {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.form-col label {
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 6px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.2s;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.form-select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: #fff;
+}
+
+.form-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.form-btn:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+.form-btn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+/* -- Tablas -- */
+.mant-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.mant-table th,
+.mant-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.mant-table th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: #333;
+}
+
+.mant-table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* -- Botones de acción -- */
+.btn-group {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-edit,
+.btn-delete {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-edit {
+  background-color: #28a745;
+}
+
+.btn-edit:hover {
+  background-color: #218838;
+}
+
+.btn-delete {
+  background-color: #dc3545;
+}
+
+.btn-delete:hover {
+  background-color: #c82333;
+}
+
+/* -- Sin resultados -- */
+.no-results {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  padding: 24px 0;
+}
+@media (max-width: 768px) {
+  /* Estilos para pantallas de hasta 768px de ancho (móviles y tabletas en vertical) */
+  
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  .form-col {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+
+  .form-col:last-child {
+    margin-bottom: 0;
+  }
+  
+  .mant-table,
+  .mant-table thead,
+  .mant-table tbody,
+  .mant-table th,
+  .mant-table td,
+  .mant-table tr {
+    display: block;
+  }
+  
+  .mant-table thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  
+  .mant-table tr {
+    border: 1px solid #ccc;
+    margin-bottom: 16px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .mant-table td {
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+    text-align: right;
+  }
+  
+  .mant-table td:before {
+    content: attr(data-label);
+    position: absolute;
+    left: 10px;
+    font-weight: bold;
+    text-align: left;
+    white-space: nowrap;
+    color: #333;
+  }
+
+  .mant-table td:last-child {
+    border-bottom: none;
+  }
+
+  .btn-group {
+    justify-content: flex-end;
+  }
+
+}
+/* -- Asignaciones (sección inferior de "tipos") -- */
+.input-group {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+}
+
+.input-group .form-select {
+  flex: 1;
+}
+
+.input-group .form-btn {
+  white-space: nowrap;
+}
+
+.section-description {
+  color: #666;
+  font-style: italic;
+  margin-top: -12px;
+  margin-bottom: 24px;
+}
+
+.label-assigned {
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.assigned-tag {
+  background-color: #e0f7fa;
+  border: 1px solid #b2eaf2;
+  color: #00796b;
+  padding: 6px 12px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+
+.tag-remove-btn {
+  background: transparent;
+  border: none;
+  color: #00796b;
+  margin-left: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  padding: 0;
+}
+
+.no-assigned-tag {
+  color: #999;
+  font-style: italic;
+}

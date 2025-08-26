@@ -31,6 +31,10 @@ export default function MantItems() {
   const [qArea, setQArea] = useState<string>("");
   const [qText, setQText] = useState<string>("");
 
+  // edición
+  const [editId, setEditId] = useState<number | null>(null);
+  const [editItem, setEditItem] = useState("");
+
   const [items, setItems] = useState<ItemRow[]>([]);
 
   useEffect(() => {
@@ -134,6 +138,31 @@ export default function MantItems() {
     loadItems();
   }
 
+  function startEdit(row: ItemRow) {
+    setEditId(row.id);
+    setEditItem(row.item);
+  }
+  function cancelEdit() {
+    setEditId(null);
+    setEditItem("");
+  }
+  async function guardarEdit(id: number) {
+    if (!editItem.trim()) return;
+    const { error } = await supabase
+      .from("checklist_items")
+      .update({ item: editItem.trim() })
+      .eq("id", id);
+    if (error) { alert(error.message); return; }
+    cancelEdit();
+    loadItems();
+  }
+  async function eliminarItem(id: number) {
+    if (!confirm("¿Eliminar ítem?")) return;
+    const { error } = await supabase.from("checklist_items").delete().eq("id", id);
+    if (error) { alert(error.message); return; }
+    loadItems();
+  }
+
   if (!["superadmin", "administrador"].includes(rol)) {
     return (
       <Layout>
@@ -146,7 +175,7 @@ export default function MantItems() {
 
   return (
     <Layout>
-      <div style={{ maxWidth: 1100, margin: "auto", padding: 24 }}>
+      <div className="mant-container">
         {/* NUEVO ÍTEM */}
         <form onSubmit={crearItem} className="admin-card">
           <h3>Nuevo ítem</h3>
@@ -155,7 +184,7 @@ export default function MantItems() {
             <div className="form-col">
               <label>Máquina</label>
               <select
-                className="checklist-select"
+                className="form-select"
                 value={nMaquina}
                 onChange={(e) => {
                   const v = e.target.value;
@@ -173,9 +202,9 @@ export default function MantItems() {
             {/* Tipo */}
             <div className="form-col">
               <label>Tipo</label>
-              <div className="input-with-btn">
+              <div className="input-group">
                 <select
-                  className="checklist-select"
+                  className="form-select"
                   value={nTipo}
                   onChange={(e) => {
                     const v = e.target.value;
@@ -189,16 +218,16 @@ export default function MantItems() {
                   <option value="">Seleccione...</option>
                   {tipos.map((t) => <option key={t.id} value={t.id}>{t.nombre}</option>)}
                 </select>
-                <button type="button" className="btn-ghost" onClick={() => alert("Crear Tipo inline")}>+ Tipo</button>
+                <button type="button" className="form-btn" onClick={() => alert("Crear Tipo inline")}>+ Tipo</button>
               </div>
             </div>
 
             {/* Área */}
             <div className="form-col">
               <label>Área</label>
-              <div className="input-with-btn">
+              <div className="input-group">
                 <select
-                  className="checklist-select"
+                  className="form-select"
                   value={nArea}
                   onChange={(e) => setNArea(e.target.value)}
                   disabled={!nTipo}
@@ -207,7 +236,7 @@ export default function MantItems() {
                   <option value="">Seleccione...</option>
                   {areas.map((a) => <option key={a.id} value={a.id}>{a.nombre}</option>)}
                 </select>
-                <button type="button" className="btn-ghost" onClick={() => alert("Crear Área inline")}>+ Área</button>
+                <button type="button" className="form-btn" onClick={() => alert("Crear Área inline")}>+ Área</button>
               </div>
             </div>
 
@@ -215,7 +244,7 @@ export default function MantItems() {
             <div className="form-col">
               <label>Descripción del ítem</label>
               <input
-                className="checklist-input"
+                className="form-input"
                 value={nDescripcion}
                 onChange={(e) => setNDescripcion(e.target.value)}
                 placeholder="Ej: Revisar niveles de aceite"
@@ -224,7 +253,7 @@ export default function MantItems() {
             </div>
 
             <div className="form-col" style={{ maxWidth: 220 }}>
-              <button type="submit" className="checklist-btn" disabled={saving}>
+              <button type="submit" className="form-btn" disabled={saving}>
                 {saving ? "Guardando..." : "Agregar ítem"}
               </button>
             </div>
@@ -237,7 +266,7 @@ export default function MantItems() {
             <div className="form-col">
               <label>Filtrar por máquina</label>
               <select
-                className="checklist-select"
+                className="form-select"
                 value={qMaquina}
                 onChange={(e) => {
                   const v = e.target.value;
@@ -252,7 +281,7 @@ export default function MantItems() {
             <div className="form-col">
               <label>Filtrar por tipo</label>
               <select
-                className="checklist-select"
+                className="form-select"
                 value={qTipo}
                 onChange={(e) => {
                   const v = e.target.value;
@@ -269,7 +298,7 @@ export default function MantItems() {
             <div className="form-col">
               <label>Filtrar por área</label>
               <select
-                className="checklist-select"
+                className="form-select"
                 value={qArea}
                 onChange={(e) => setQArea(e.target.value)}
                 disabled={!qTipo}
@@ -281,14 +310,14 @@ export default function MantItems() {
             <div className="form-col">
               <label>Buscar texto</label>
               <input
-                className="checklist-input"
+                className="form-input"
                 value={qText}
                 onChange={(e) => setQText(e.target.value)}
                 placeholder="Descripción..."
               />
             </div>
             <div className="form-col" style={{ maxWidth: 180 }}>
-              <button type="button" className="checklist-btn" onClick={loadItems}>
+              <button type="button" className="form-btn" onClick={loadItems}>
                 Buscar
               </button>
             </div>
@@ -297,27 +326,59 @@ export default function MantItems() {
 
         {/* LISTA */}
         <div className="admin-card" style={{ padding: 0 }}>
-          <table className="nx-table">
+          <table className="mant-table">
             <thead>
               <tr>
-                <th className="nx-th" style={{ width: 80 }}>ID</th>
-                <th className="nx-th">Máquina</th>
-                <th className="nx-th">Tipo</th>
-                <th className="nx-th">Área</th>
-                <th className="nx-th">Descripción</th>
+                <th>ID</th>
+                <th>Máquina</th>
+                <th>Tipo</th>
+                <th>Área</th>
+                <th>Descripción</th>
+                <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
               {items.length === 0 && (
-                <tr><td className="nx-td" colSpan={5}>Sin resultados.</td></tr>
+                <tr><td colSpan={6} className="no-results">Sin resultados.</td></tr>
               )}
               {items.map(it => (
                 <tr key={it.id}>
-                  <td className="nx-td">{it.id}</td>
-                  <td className="nx-td">{maquinasMap[it.id_maquina] || it.id_maquina}</td>
-                  <td className="nx-td">{tiposMap[it.id_tipo] || it.id_tipo}</td>
-                  <td className="nx-td">{areasMap[it.id_area] || it.id_area}</td>
-                  <td className="nx-td">{it.item}</td>
+                  <td data-label="ID">{it.id}</td>
+                  <td data-label="Máquina">{maquinasMap[it.id_maquina] || it.id_maquina}</td>
+                  <td data-label="Tipo">{tiposMap[it.id_tipo] || it.id_tipo}</td>
+                  <td data-label="Área">{areasMap[it.id_area] || it.id_area}</td>
+                  <td data-label="Descripción">
+                    {editId === it.id ? (
+                      <input 
+                        className="form-input" 
+                        value={editItem} 
+                        onChange={(e) => setEditItem(e.target.value)} 
+                      />
+                    ) : (
+                      it.item
+                    )}
+                  </td>
+                  <td data-label="Acciones">
+                    {editId === it.id ? (
+                      <div className="btn-group">
+                        <button className="form-btn" style={{backgroundColor:'#28a745'}} onClick={() => guardarEdit(it.id)}>
+                          Guardar
+                        </button>
+                        <button className="form-btn" style={{backgroundColor:'#6c757d'}} onClick={cancelEdit}>
+                          Cancelar
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="btn-group">
+                        <button className="btn-edit" onClick={() => startEdit(it)}>
+                          Editar
+                        </button>
+                        <button className="btn-delete" onClick={() => eliminarItem(it.id)}>
+                          Eliminar
+                        </button>
+                      </div>
+                    )}
+                  </td>
                 </tr>
               ))}
             </tbody>

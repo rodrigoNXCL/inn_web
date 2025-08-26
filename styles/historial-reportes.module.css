@@ -1,0 +1,91 @@
+/* ==================================== */
+/* Estilos para la tabla de Historial de Reportes */
+/* Se utiliza en /reportes-historial/index.tsx */
+/* ==================================== */
+
+.container {
+  padding: 2rem;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.loading,
+.error,
+.noRecords {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #6c757d;
+  margin-top: 2rem;
+}
+
+.error {
+  color: #dc3545;
+}
+
+.tablaContainer {
+  width: 100%;
+  max-width: 1000px;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+}
+
+.tablaReportes {
+  width: 100%;
+  border-collapse: collapse; /* Usa collapse para un control más preciso del borde */
+  margin-top: 1rem;
+}
+
+.tablaReportes th,
+.tablaReportes td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.tablaReportes thead tr {
+  background-color: transparent;
+}
+
+.tablaReportes th {
+  font-weight: 600;
+  color: #555;
+}
+
+.tablaReportes tbody tr {
+  background-color: #f8f9fa;
+  transition: background-color 0.3s ease;
+}
+
+.tablaReportes tbody tr:hover {
+  background-color: #e9ecef;
+}
+
+.btnVer {
+  background-color: #3498db;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btnVer:hover {
+  background-color: #2980b9;
+}

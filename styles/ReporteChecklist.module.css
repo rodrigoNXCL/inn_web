@@ -1,0 +1,325 @@
+/* ==================================== */
+/* Estilos para el reporte individual (Reporte 1) */
+/* Se utiliza en /reportes/[id].tsx */
+/* ==================================== */
+
+.reporteIndividualContainer {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+.reporteIndividualActions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+.reporteIndividualContent {
+  padding: 2rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.reporteIndividualHeader {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.reporteIndividualHeader h1 {
+  font-size: 1.5rem;
+  margin: 0;
+  color: #333;
+}
+
+.reporteIndividualHeader p {
+  font-size: 1rem;
+  color: #666;
+}
+
+.reporteIndividualLogo {
+  max-width: 100px;
+  margin-bottom: 0.5rem;
+}
+
+.reporteIndividualInfoSection {
+  margin-bottom: 2rem;
+}
+
+.reporteIndividualSectionTitle {
+  font-size: 1.2rem;
+  color: #444;
+  border-bottom: 2px solid #333;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.reporteIndividualInfoGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem 2rem;
+  font-size: 0.9rem;
+  box-sizing: border-box;
+}
+
+.reporteIndividualInfoGrid p {
+  margin: 0;
+}
+
+.reporteIndividualFotoContainer {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.reporteIndividualFoto {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.reporteIndividualTablaResultados {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.reporteIndividualTablaResultados th,
+.reporteIndividualTablaResultados td {
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+  text-align: left;
+}
+
+.reporteIndividualTablaResultados th {
+  background-color: #f2f2f2;
+}
+
+.reporteIndividualAplicaCell,
+.reporteIndividualValorCell {
+  text-align: center;
+}
+
+.reporteIndividualFirmaSection {
+  margin-top: 2rem;
+  text-align: right;
+}
+
+.reporteIndividualFirmaBox {
+  display: inline-block;
+  text-align: center;
+}
+
+.reporteIndividualFirmaLine {
+  width: 200px;
+  height: 1px;
+  background-color: black;
+  margin: 10px auto 5px;
+}
+
+.reporteIndividualFirmaLabel {
+  font-size: 0.8rem;
+}
+
+/* ==================================== */
+/* Estilos para el reporte con filtros (Reporte 2) */
+/* Se utiliza en /reportes/ver-reporte.tsx */
+/* ==================================== */
+
+.reporteGeneralContainer {
+  padding: 2rem;
+}
+
+.reporteGeneralHeader {
+  width: 100%;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.reporteGeneralInfoSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: #555;
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+.reporteGeneralInfoRow {
+  display: flex;
+  justify-content: space-between;
+}
+
+.reporteGeneralInfoRow strong {
+  color: #333;
+}
+
+.reporteGeneralTablaResultados {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.reporteGeneralTablaResultados th,
+.reporteGeneralTablaResultados td {
+  border: 1px solid #ddd;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.reporteGeneralTablaResultados th {
+  font-weight: 600;
+  color: #333;
+}
+
+.reporteGeneralTablaResultados tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+.reporteGeneralSignatureSection {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #ddd;
+  text-align: center;
+  font-size: 1rem;
+  color: #555;
+}
+
+.reporteGeneralSignatureLine {
+  width: 250px;
+  height: 1px;
+  background-color: #333;
+  margin: 0 auto 0.5rem;
+}
+
+/* ==================================== */
+/* Estilos compartidos y de utilidad */
+/* ==================================== */
+.loading, .error, .noData {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+  font-size: 1.2rem;
+}
+.printBtn {
+  background-color: #3498db;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.2s ease-in-out;
+}
+.printBtn:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
+}
+
+/* ==================================== */
+/* Estilos para el Index de Reportes (Página de Filtros) */
+/* Se utiliza en /reportes/index.tsx */
+/* ==================================== */
+
+.reporteContainer {
+  padding: 2rem;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.reporteContainer h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #333;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.reporteContainer p {
+  font-size: 1rem;
+  color: #666;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.reporteContent {
+  width: 100%;
+  max-width: 800px;
+  background-color: white;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.reporteContent h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #444;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.flexRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.flexCol {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 45%; /* Permite que los elementos se distribuyan en dos columnas */
+}
+
+.flexCol label {
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.input,
+.select {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input:focus,
+.select:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+/* ==================================== */
+/* Nuevo bloque para la impresión */
+/* ==================================== */
+
+@media print {
+  .reporteIndividualActions,
+  .reporteGeneralActions,
+  .reporteGeneralSignatureSection {
+    display: none !important;
+  }
+}
